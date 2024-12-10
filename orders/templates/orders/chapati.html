@@ -1,0 +1,33 @@
+{% extends 'orders/header.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="content my-4 px-4">
+        <div class="card rounded-0 shadow">
+            <div class="card-body">
+                <h4 style="margin:10px; text-align:center;"> Chapati – A Traditional Flatbread 🍞</h4>
+                <div class="row justify-content-center">
+                    <!-- You can replace this with a real list of Chapati variations or offers -->
+                    <div class="card" id="chapati_card" style="width: 24rem; margin:10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Classic Chapati</h5>
+                            <p class="card-text">Soft, fresh, and perfect for pairing with your favorite curry.</p>
+                        </div>
+                        <button class="btn btn-success" onclick="add_to_cart({item_description:'Classic Chapati', price:100})">Ksh 100</button>
+                    </div>
+
+                    <div class="card" id="chapati_card" style="width: 24rem; margin:10px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Garlic Chapati</h5>
+                            <p class="card-text">Flavored with garlic and cooked to perfection, a perfect twist to your Chapati experience.</p>
+                        </div>
+                        <button class="btn btn-success" onclick="add_to_cart({item_description:'Garlic Chapati', price:120})">Ksh 120</button>
+                    </div>
+
+                    <!-- Additional chapati variations can be added similarly -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

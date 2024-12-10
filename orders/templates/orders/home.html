@@ -5,7 +5,7 @@
       <div class="row justify-content-center">
         {% for cat in categories %}
           <div class="card rounded-0" style="width: 18rem; margin: 20px;"> <!-- The col-sm-4 stuff is that if it's on a small screen it will take up a third of the widths-->
-            <img src="{% if cat.category_gif %}{{cat.category_gif.url}}{% else %}{% static 'no-img-available.png' %}{% endif %}" class="card-img-top cat-img rounded-0" alt="gif for category item" style="width:100%;">
+            <img src="{% if cat.category_gif %}{{ cat.category_gif.url }}{% else %}{% static 'no-img-available.png' %}{% endif %}" class="card-img-top cat-img rounded-0" alt="gif for category item" style="width:100%;">
             <div class="card-body">
               <h5 class="card-title" >{{cat.category_title}}</h5>
               <p class="card-text truncate-3">{{cat.category_description|striptags}}</p>

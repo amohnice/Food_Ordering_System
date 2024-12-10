@@ -16,6 +16,7 @@ urlpatterns = [
     path("Salad", views.salad, name="salad"),
     path("Subs", views.subs, name="subs"),
     path("Platters", views.dinner_platters, name="dinner_platters"),
+    path('Chapati/', views.chapati_view, name='chapati'),
     path("directions", views.directions, name="directions"),
     path("hours", views.hours, name="hours"),
     path("contact", views.contact, name="contact"),

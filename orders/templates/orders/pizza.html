@@ -42,8 +42,8 @@
                         <tr>
                             <th>{{pizza.pizza_choice}}</th>
                             {% if number_of_toppings %}
-                            <td><button type="button" class="btn btn-primary add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Small Sicillian', {{pizza.small_price}})"><strong>{{pizza.small_price}}</strong></button></td>
-                            <td><button type="button" class="btn btn-success add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Large Sicillian', {{pizza.large_price}})"><strong>{{pizza.large_price}}</strong></button></td>
+                            <td><button type="button" class="btn btn-primary add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Small Sicillian', {{pizza.small_price}})"><strong>Ksh {{pizza.small_price}}</strong></button></td>
+                            <td><button type="button" class="btn btn-success add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Large Sicillian', {{pizza.large_price}})"><strong>Ksh {{pizza.large_price}}</strong></button></td>
                             {% else %}
                             <td><button type="button" class="btn btn-primary add_to_cart" onclick="add_to_cart({item_description: 'Small Sicillian Pizza - {{pizza.pizza_choice}}' , price: {{pizza.small_price}}})"><strong>{{pizza.small_price}}</strong></button></td>
                             <td><button type="button" class="btn btn-success add_to_cart" onclick="add_to_cart({item_description: 'Large Sicillian Pizza - {{pizza.pizza_choice}}' , price: {{pizza.large_price}}})"><strong>{{pizza.large_price}}</strong></button></td>
@@ -66,8 +66,8 @@
                         <tr>
                             <th>{{pizza.pizza_choice}}</th>
                             {% if number_of_toppings %}
-                            <td><button type="button" class="btn btn-primary add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Small Regular', {{pizza.small_price}})"><strong>{{pizza.small_price}}</strong></button></td>
-                            <td><button type="button" class="btn btn-success add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Large Regular', {{pizza.large_price}})"><strong>{{pizza.large_price}}</strong></button></td>
+                            <td><button type="button" class="btn btn-primary add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Small Regular', {{pizza.small_price}})"><strong>Ksh {{pizza.small_price}}</strong></button></td>
+                            <td><button type="button" class="btn btn-success add_to_cart" onclick="pizza_toppings({{number_of_toppings}}, 'Large Regular', {{pizza.large_price}})"><strong>Ksh {{pizza.large_price}}</strong></button></td>
                             {% else %}
                             <td><button type="button" class="btn btn-primary add_to_cart" onclick="add_to_cart({item_description: 'Small Regular Pizza - {{pizza.pizza_choice}}' , price: {{pizza.small_price}} })"><strong>{{pizza.small_price}}</strong></button></td>
                             <td><button type="button" class="btn btn-success add_to_cart" onclick="add_to_cart({item_description: 'Large Regular Pizza - {{pizza.pizza_choice}}' , price: {{pizza.large_price}} })"><strong>{{pizza.large_price}}</strong></button></td>

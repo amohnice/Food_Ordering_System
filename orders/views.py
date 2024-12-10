@@ -187,3 +187,6 @@ def retrieve_saved_cart(request):
 def check_superuser(request):
     print(f"User super??? {request.user.is_superuser}")
     return HttpResponse(request.user.is_superuser)
+
+def chapati_view(request):
+    return render(request, 'orders/chapati.html')

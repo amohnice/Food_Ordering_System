@@ -6,7 +6,7 @@ from datetime import datetime
 class Category(models.Model):
     category_title = models.CharField(max_length=200)
     category_gif = models.ImageField(upload_to="media")
-    category_description = models.TextField() #make this the wysiwyg text field
+    category_description = models.Field(null=True, blank=True) #make this the wysiwyg text field
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
@@ -23,7 +23,7 @@ class RegularPizza(models.Model):
     pizza_choice = models.CharField(max_length=200)
     small_price = models.DecimalField(max_digits=6, decimal_places=2)
     large_price = models.DecimalField(max_digits=6, decimal_places=2)
-    category_description = models.TextField() #make this the wysiwyg text field
+    category_description = models.Field(null=True, blank=True) #make this the wysiwyg text field
 
     class Meta:
         verbose_name = "List of Regular Pizza"
@@ -38,7 +38,7 @@ class SicilianPizza(models.Model):
     pizza_choice = models.CharField(max_length=200)
     small_price = models.DecimalField(max_digits=6, decimal_places=2)
     large_price = models.DecimalField(max_digits=6, decimal_places=2)
-    category_description = models.TextField() #make this the wysiwyg text field
+    category_description = models.Field(null=True, blank=True) #make this the wysiwyg text field
 
     class Meta:
         verbose_name = "List of Sicilian Pizza"
@@ -147,3 +147,13 @@ class SavedCarts(models.Model):
     def __str__(self):
         #overriding the string method to get a good representation of it in string format
         return f"Saved cart for {self.username}"
+
+class Chapati(models.Model):
+    chapati_name = models.CharField(max_length=200)
+    chapati_description = models.Field(null=True, blank=True)
+    price = models.DecimalField(max_digits=5, decimal_places=2)  # You can adjust the price format based on your needs
+    # Optionally add an image for the Chapati
+    image = models.ImageField(upload_to='chapati_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.chapati_name
