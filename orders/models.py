@@ -6,7 +6,7 @@ from datetime import datetime
 class Category(models.Model):
     category_title = models.CharField(max_length=200)
     category_gif = models.ImageField(upload_to="media")
-    category_description = models.Field(null=True, blank=True) #make this the wysiwyg text field
+    category_description = models.Field(max_length=200, null=True, blank=True) #make this the wysiwyg text field
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
@@ -120,6 +120,21 @@ class DinnerPlatters(models.Model):
         #overriding the string method to get a good representation of it in string format
         return f"Platter : {self.dish_name}"
 
+class Chapati(models.Model):
+    chapati_choice = models.CharField(max_length=200)
+    chapati_description = models.Field(null=True, blank=True)
+    chapati_price = models.DecimalField(max_digits=5, decimal_places=2)  # You can adjust the price format based on your needs
+    # Optionally add an image for the Chapati
+    image = models.ImageField(upload_to='chapati_images/', null=True, blank=True)
+
+    class Meta:
+        verbose_name = "List of Chapati"
+        verbose_name_plural = "List of Chapati"
+
+    def __str__(self):
+        return f"Chapati : {self.chapati_choice}"
+
+
 class UserOrder(models.Model):
     username = models.CharField(max_length=200) #who placed the order
     order = models.TextField() #this will be a string representation of the cart from localStorage
@@ -148,12 +163,3 @@ class SavedCarts(models.Model):
         #overriding the string method to get a good representation of it in string format
         return f"Saved cart for {self.username}"
 
-class Chapati(models.Model):
-    chapati_name = models.CharField(max_length=200)
-    chapati_description = models.Field(null=True, blank=True)
-    price = models.DecimalField(max_digits=5, decimal_places=2)  # You can adjust the price format based on your needs
-    # Optionally add an image for the Chapati
-    image = models.ImageField(upload_to='chapati_images/', null=True, blank=True)
-
-    def __str__(self):
-        return self.chapati_name
