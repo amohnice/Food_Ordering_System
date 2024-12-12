@@ -7,6 +7,7 @@ from django.contrib.auth import logout, authenticate, login
 import json
 from django.views.decorators.csrf import csrf_exempt
 from . import forms
+from django_daraja.mpesa.core import MpesaClient
 
 # Create your views here.
 def index(request):
@@ -116,26 +117,49 @@ def cart(request):
 
 def checkout(request):
     if request.method == 'POST':
+        # Cart and order details from POST request
         cart = json.loads(request.POST.get('cart'))
         price = request.POST.get('price_of_cart')
         username = request.user.username
         response_data = {}
+
+        # Prepare list of items from the cart
         list_of_items = [item["item_description"] for item in cart]
 
-        order = UserOrder(username=username, order=list_of_items, price=float(price), delivered=False) #create the row entry
-        order.save() #save row entry in database
+        # Create an order record in the database
+        order = UserOrder(username=username, order=list_of_items, price=float(price), delivered=False)
+        order.save()  # Save the order in the database
 
-        response_data['result'] = 'Order Recieved!'
+        # Now initiate the Mpesa payment
+        # You can define client and other parameters as needed
+        client = MpesaClient()
+        phone_number = '0795757125'  # Or retrieve dynamically if you store users' phone numbers
+        amount = str(price)  # Convert price to string if needed for Mpesa
+        account_reference = f'order_{order.id}'  # Make the account reference unique based on order ID
+        transaction_desc = 'food payment'
+        callback_url = 'https://darajambili.herokuapp.com/express-payment'  # This should be your callback URL
 
+        # Make the STK Push request to Mpesa
+        try:
+            payment_response = client.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
+            response_data['payment_response'] = payment_response
+        except Exception as e:
+            response_data['error'] = str(e)
+
+        # Respond with the order and payment response
+        response_data['result'] = 'Order Received!'
         return HttpResponse(
             json.dumps(response_data),
             content_type="application/json"
         )
+
     else:
+        # If not a POST request, return a response indicating that
         return HttpResponse(
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
+
 
 def view_orders(request):
     if request.user.is_superuser:
@@ -196,3 +220,7 @@ def chapati_list(request):
     # Render the template with the chapatis context
     return render(request, 'orders/chapati.html', {'chapatis': chapatis})
 
+
+def pay_with_mpesa(request):
+        data = request.body
+        return HttpResponse("It worked, check your phone")

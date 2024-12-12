@@ -28,6 +28,7 @@ urlpatterns = [
     path("save_cart", views.save_cart, name="save_cart"),
     path("retrieve_saved_cart", views.retrieve_saved_cart, name="retrieve_saved_cart"),
     path("check_superuser", views.check_superuser, name="check_superuser"),
+    path('daraja/stk-push', views.pay_with_mpesa, name='mpesa_stk'),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
