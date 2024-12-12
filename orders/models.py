@@ -121,9 +121,9 @@ class DinnerPlatters(models.Model):
         return f"Platter : {self.dish_name}"
 
 class Chapati(models.Model):
-    chapati_choice = models.CharField(max_length=200)
-    chapati_description = models.Field(null=True, blank=True)
-    chapati_price = models.DecimalField(max_digits=5, decimal_places=2)  # You can adjust the price format based on your needs
+    dish_name = models.CharField(max_length=200)
+    category_description = models.Field(null=True, blank=True)
+    dish_price = models.DecimalField(max_digits=5, decimal_places=2)  # You can adjust the price format based on your needs
     # Optionally add an image for the Chapati
     image = models.ImageField(upload_to='chapati_images/', null=True, blank=True)
 
@@ -132,7 +132,7 @@ class Chapati(models.Model):
         verbose_name_plural = "List of Chapati"
 
     def __str__(self):
-        return f"Chapati : {self.chapati_choice}"
+        return f"Chapati : {self.dish_name}"
 
 
 class UserOrder(models.Model):

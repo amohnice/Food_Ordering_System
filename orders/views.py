@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Category, RegularPizza, SicilianPizza, Toppings, Sub, Pasta, Salad, DinnerPlatters, UserOrder, SavedCarts
+from .models import Category, RegularPizza, SicilianPizza, Toppings, Sub, Pasta, Salad, DinnerPlatters, UserOrder, SavedCarts, Chapati
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import logout, authenticate, login
@@ -188,5 +188,11 @@ def check_superuser(request):
     print(f"User super??? {request.user.is_superuser}")
     return HttpResponse(request.user.is_superuser)
 
-def chapati_view(request):
-    return render(request, 'orders/chapati.html')
+
+def chapati_list(request):
+    # Fetch all chapatis from the database
+    chapatis = Chapati.objects.all()
+
+    # Render the template with the chapatis context
+    return render(request, 'orders/chapati.html', {'chapatis': chapatis})
+
